@@ -65,10 +65,10 @@ KANA_MARU = (
 )
 
 HIPHENS = ('˗', '֊', '‐', '‑', '‒', '–', '⁃', '⁻', '₋', '−')
-CHOONPUS = ('﹣', '－', 'ｰ', '—', '―', '─', '━', 'ー')
-TILDES = ('~', '∼', '∾', '〜', '〰', '～')
+CHOONPUS = ('﹣', '－', 'ｰ', '—', '―', '─', '━', 'ー', '〜', '～')
+TILDES = ('~', '∼', '∾', '〰')
 
-SPACE = (' ', '　')
+SPACE = (' ', '　', chr(12442))
 
 cdef unordered_map[Py_UNICODE, Py_UNICODE] conversion_map, kana_ten_map, kana_maru_map
 cdef unordered_set[Py_UNICODE] blocks, basic_latin
@@ -136,7 +136,7 @@ cpdef unicode normalize(unicode text, int repeat=0):
             else:
                 if conversion_map.count(c):
                     c = conversion_map[c]
-                if c == 'ﾞ' and kana_ten_map.count(prev):
+                if (c == 'ﾞ' or c == "゛") and kana_ten_map.count(prev):
                     pos -= 1
                     c = kana_ten_map[prev]
                 elif c == 'ﾟ' and kana_maru_map.count(prev):

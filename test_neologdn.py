@@ -18,19 +18,19 @@ class TestNeologdn(unittest.TestCase):
         self.assertEqual(normalize('お             お'), 'おお')
         self.assertEqual(normalize('      おお'), 'おお')
         self.assertEqual(normalize('おお      '), 'おお')
-        self.assertEqual(normalize('検索 エンジン 自作 入門 を 買い ました!!!'),\
+        self.assertEqual(normalize('検索 エンジン 自作 入門 を 買い ました!!!'),
                          '検索エンジン自作入門を買いました!!!')
         self.assertEqual(normalize('アルゴリズム C'), 'アルゴリズムC')
         self.assertEqual(normalize('　　　ＰＲＭＬ　　副　読　本　　　'), 'PRML副読本')
         self.assertEqual(normalize('Coding the Matrix'), 'Coding the Matrix')
-        self.assertEqual(normalize('南アルプスの　天然水　Ｓｐａｒｋｉｎｇ　Ｌｅｍｏｎ　レモン一絞り'),\
+        self.assertEqual(normalize('南アルプスの　天然水　Ｓｐａｒｋｉｎｇ　Ｌｅｍｏｎ　レモン一絞り'),
                          '南アルプスの天然水Sparking Lemonレモン一絞り')
-        self.assertEqual(normalize('南アルプスの　天然水-　Ｓｐａｒｋｉｎｇ*　Ｌｅｍｏｎ+　レモン一絞り'),\
+        self.assertEqual(normalize('南アルプスの　天然水-　Ｓｐａｒｋｉｎｇ*　Ｌｅｍｏｎ+　レモン一絞り'),
                          '南アルプスの天然水- Sparking*Lemon+レモン一絞り')
         self.assertEqual(normalize('ﾊﾟﾊﾟ'), 'パパ')
         self.assertEqual(normalize('a˗֊‐‑‒–⁃⁻₋−'), 'a-')
         self.assertEqual(normalize('あ﹣－ｰ—―─━ー'), 'あー')
-        self.assertEqual(normalize('チルダ~∼∾〜〰～'), 'チルダ')
+        self.assertEqual(normalize('チルダ~∼∾〜〰～'), 'チルダー')
         self.assertEqual(normalize('う゛ほﾟ'), 'ゔぽ')
 
     def test_normalize_lengthened(self):
